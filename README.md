@@ -1,9 +1,9 @@
 # 🏥 医疗 Agent - 全维度工业级 Python 项目
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/streamlit-1.55.0-red.svg)](https://streamlit.io)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/状态-开发中-orange.svg)]()
+[!\[Python 3.10+\](https://img.shields.io/badge/python-3.10+-blue.svg null)](https://www.python.org/downloads/)
+[!\[Streamlit\](https://img.shields.io/badge/streamlit-1.55.0-red.svg null)](https://streamlit.io)
+[!\[License: MIT\](https://img.shields.io/badge/License-MIT-yellow.svg null)](https://opensource.org/licenses/MIT)
+[!\[Status\](https://img.shields.io/badge/状态-开发中-orange.svg null)]()
 
 > ⚠️ **项目状态**: 开发中 - 核心功能已完成，持续完善中
 
@@ -457,37 +457,21 @@ python main.py --web --env .env.dev
 
 **待完善功能** - 开发中 🚧
 
-<<<<<<< HEAD
-- ⏳ 性能监控仪表板
-- ⏳ 数据持久化（对话历史）
-- ⏳ 多用户支持与权限管理
-- ⏳ 移动端适配优化
-- ⏳ 完整的 API 文档
-- ⏳ 测试覆盖率提升
-
-**下一步计划**
-
-1. Q2 2026: 性能监控与数据持久化
-2. Q3 2026: 多用户支持与移动端优化
-3. Q4 2026: 完整 API 文档与测试覆盖
-
-=======
->>>>>>> a5619773ba6dfe0b5d57d681795e332489803448
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
 ## 👥 开发团队
 
-- **项目负责人**: [kyan]
-- **核心开发**: [kyan]
+- **项目负责人**: \[kyan]
+- **核心开发**: \[kyan]
 - **特别感谢**: 智谱 AI 提供的 API 支持、Trae IDE
 
 ## 📧 联系方式
 
-- **项目地址**: [[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)](https://github.com/Ryan-Shida/medical-agent)
-- **问题反馈**: [[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)](https://github.com/Ryan-Shida/medical-agent/issues)
-- **邮箱**: [2957837612@qq.com](mailto:2957837612@qq.com)
+- **项目地址**: \[[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]\(<https://github.com/Ryan-Shida/medical-agent>)
+- **问题反馈**: \[[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]\(<https://github.com/Ryan-Shida/medical-agent/issues>)
+- **邮箱**: <2957837612@qq.com>
 
 ## 🙏 致谢
 
@@ -498,7 +482,7 @@ python main.py --web --env .env.dev
 - [FAISS](https://github.com/facebookresearch/faiss) - 向量检索库
 - [Python](https://www.python.org/) - 编程语言
 
----
+***
 
 <div align="center">
 
@@ -506,10 +490,10 @@ python main.py --web --env .env.dev
 
 [⬆️ 返回顶部](#-医疗-agent---全维度工业级-python-项目)
 
-![GitHub stars](https://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social)
-![GitHub forks](https://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social)
-![GitHub issues](https://img.shields.io/github/issues/Ryan-Shida/medical-agent)
-![GitHub license](https://img.shields.io/github/license/Ryan-Shida/medical-agent)
+!\[GitHub stars]\(https\://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social null)
+!\[GitHub forks]\(https\://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social null)
+!\[GitHub issues]\(https\://img.shields.io/github/issues/Ryan-Shida/medical-agent null)
+!\[GitHub license]\(https\://img.shields.io/github/license/Ryan-Shida/medical-agent null)
 
 **🚧 项目持续开发中，欢迎 Star ⭐ 和关注！**
 
