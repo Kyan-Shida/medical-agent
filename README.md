@@ -490,11 +490,6 @@ python main.py --web --env .env.dev
 
 [⬆️ 返回顶部](#-医疗-agent---全维度工业级-python-项目)
 
-![GitHub stars](https://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social null)
-![GitHub forks](https://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social null)
-![GitHub issues](https://img.shields.io/github/issues/Ryan-Shida/medical-agent null)
-![GitHub license](https://img.shields.io/github/license/Ryan-Shida/medical-agent null)
-
 **🚧 项目持续开发中，欢迎 Star ⭐ 和关注！**
 
 </div>
