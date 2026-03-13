@@ -1,0 +1,67 @@
+version: '3.8'
+
+services:
+  # Redis 服务
+  redis:
+    image: redis:alpine
+    container_name: medical-agent-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - medical-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Agent 服务
+  agent:
+    build: .
+    container_name: medical-agent
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      - ENV_FILE=.env.prod
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./logs:/app/logs
+      - ./cache:/app/cache
+      - ./knowledge_base:/app/knowledge_base
+    networks:
+      - medical-network
+    restart: unless-stopped
+
+  # Web 面板服务
+  web:
+    build: .
+    container_name: medical-agent-web
+    depends_on:
+      - agent
+      - redis
+    environment:
+      - ENV_FILE=.env.prod
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./web/report:/app/web/report
+    command: streamlit run web/app.py --server.port 8501 --server.address 0.0.0.0
+    networks:
+      - medical-network
+    restart: unless-stopped
+
+networks:
+  medical-network:
+    driver: bridge
+
+volumes:
+  redis_data:
