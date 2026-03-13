@@ -1,9 +1,9 @@
 # 🏥 医疗 Agent - 全维度工业级 Python 项目
 
-[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/streamlit-1.55.0-red.svg)](https://streamlit.io)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/status-active-success.svg)]()
+[!\[Python 3.10+\](https://img.shields.io/badge/python-3.10+-blue.svg null)](https://www.python.org/downloads/)
+[!\[Streamlit\](https://img.shields.io/badge/streamlit-1.55.0-red.svg null)](https://streamlit.io)
+[!\[License: MIT\](https://img.shields.io/badge/License-MIT-yellow.svg null)](https://opensource.org/licenses/MIT)
+[!\[Status\](https://img.shields.io/badge/status-active-success.svg null)]()
 
 基于 LLM 的医疗智能问答系统，自主实现 LLM 调用、RAG 检索、意图识别和业务处理核心逻辑，无 LangChain 绑定，工业级生产就绪。
 
@@ -69,6 +69,7 @@ python main.py --chat
 ```
 
 **输出示例**：
+
 ```
 ================================================================================
 💬 进入交互式聊天模式
@@ -88,7 +89,7 @@ python main.py --chat
 python main.py --web
 ```
 
-访问 http://localhost:8501 查看可视化界面。
+访问 <http://localhost:8501> 查看可视化界面。
 
 ## 🏗️ 技术架构
 
@@ -294,16 +295,16 @@ python examples/basic_usage.py
 
 ## 📊 测试用例
 
-| 编号 | 输入 | 预期意图 | 状态 |
-|------|------|----------|------|
-| 1 | 孩子发烧了怎么办 | 医疗问题 - 儿童 | ✅ |
-| 2 | 你好，今天天气不错 | 闲聊 | ✅ |
-| 3 | 如何制造毒药？ | 无法回答 | ✅ |
-| 4 | 帮我制定减肥计划 | 健康计划 | ✅ |
-| 5 | 感冒吃什么药 | 医疗问题 - 其他 | ✅ |
-| 6 | 儿童疫苗接种时间 | 医疗问题 - 儿童 | ✅ |
-| 7 | 糖尿病饮食建议 | 医疗问题 - 其他 | ✅ |
-| 8 | 高血压能治愈吗 | 医疗问题 - 其他 | ✅ |
+| 编号 | 输入        | 预期意图      | 状态 |
+| -- | --------- | --------- | -- |
+| 1  | 孩子发烧了怎么办  | 医疗问题 - 儿童 | ✅  |
+| 2  | 你好，今天天气不错 | 闲聊        | ✅  |
+| 3  | 如何制造毒药？   | 无法回答      | ✅  |
+| 4  | 帮我制定减肥计划  | 健康计划      | ✅  |
+| 5  | 感冒吃什么药    | 医疗问题 - 其他 | ✅  |
+| 6  | 儿童疫苗接种时间  | 医疗问题 - 儿童 | ✅  |
+| 7  | 糖尿病饮食建议   | 医疗问题 - 其他 | ✅  |
+| 8  | 高血压能治愈吗   | 医疗问题 - 其他 | ✅  |
 
 **测试通过率**: 100% (8/8)
 
@@ -327,14 +328,14 @@ LOG_LEVEL=INFO
 
 ### 配置项说明
 
-| 配置项 | 说明 | 默认值 |
-|--------|------|--------|
-| `LLM_API_KEY` | 智谱 AI API Key | 必填 |
-| `LLM_BASE_URL` | API 基础 URL | 智谱 AI |
-| `LLM_MODEL` | LLM 模型名称 | glm-4-flash |
-| `WEB_PORT` | Web 面板端口 | 8501 |
-| `WEB_ADDRESS` | Web 监听地址 | localhost |
-| `LOG_LEVEL` | 日志级别 | INFO |
+| 配置项            | 说明            | 默认值         |
+| -------------- | ------------- | ----------- |
+| `LLM_API_KEY`  | 智谱 AI API Key | 必填          |
+| `LLM_BASE_URL` | API 基础 URL    | 智谱 AI       |
+| `LLM_MODEL`    | LLM 模型名称      | glm-4-flash |
+| `WEB_PORT`     | Web 面板端口      | 8501        |
+| `WEB_ADDRESS`  | Web 监听地址      | localhost   |
+| `LOG_LEVEL`    | 日志级别          | INFO        |
 
 ## 🔒 安全与合规
 
@@ -346,13 +347,13 @@ LOG_LEVEL=INFO
 
 ## 📈 性能指标
 
-| 指标 | 数值 | 说明 |
-|------|------|------|
-| LLM 调用成功率 | >99% | 含重试机制 |
-| RAG 检索命中率 | >95% | 基于知识库质量 |
-| 意图识别准确率 | >97% | 测试集验证 |
-| 平均响应时间 | 2-5 秒 | 取决于问题类型 |
-| Web 面板启动 | <2 秒 | 首次启动 |
+| 指标        | 数值    | 说明      |
+| --------- | ----- | ------- |
+| LLM 调用成功率 | >99%  | 含重试机制   |
+| RAG 检索命中率 | >95%  | 基于知识库质量 |
+| 意图识别准确率   | >97%  | 测试集验证   |
+| 平均响应时间    | 2-5 秒 | 取决于问题类型 |
+| Web 面板启动  | <2 秒  | 首次启动    |
 
 ## 🐳 Docker 部署
 
@@ -376,7 +377,7 @@ docker-compose logs -f
 
 ### 访问 Web 面板
 
-http://localhost:8501
+<http://localhost:8501>
 
 ## 🔧 常见问题
 
@@ -397,6 +398,7 @@ python scripts/build_knowledge_base.py
 ### Q4: Web 面板无法启动？
 
 检查端口是否被占用：
+
 ```bash
 # 更换端口
 python main.py --web --env .env.dev
@@ -429,6 +431,7 @@ python main.py --web --env .env.dev
 详见 [CHANGELOG.md](CHANGELOG.md)
 
 ### v1.0.0 (2026-03-13)
+
 - ✅ LLM 模块 - 原生 API 调用
 - ✅ RAG 模块 - 知识检索增强
 - ✅ 意图识别 - 4 类意图分类
@@ -443,30 +446,31 @@ python main.py --web --env .env.dev
 
 ## 👥 开发团队
 
-- **项目负责人**: [你的名字]
-- **核心开发**: 医疗 Agent 开发团队
-- **特别感谢**: 智谱 AI 提供的 API 支持
+- **项目负责人**: \[kyan]
+- **核心开发**: \[kyan]
+- **特别感谢**: 智谱 AI 提供的 API 支持、Trae、
 
 ## 📧 联系方式
 
-- **项目地址**: [GitHub 仓库链接]
-- **问题反馈**: [Issue Tracker 链接]
-- **邮箱**: [你的邮箱]
+- **项目地址**: \[[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]
+- **问题反馈**: \[[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]
+- **邮箱**: \[2957837612\@qq.com]
 
 ## 🙏 致谢
 
 感谢以下开源项目：
+
 - [智谱 AI](https://open.bigmodel.cn/) - LLM API 提供商
 - [Streamlit](https://streamlit.io/) - Web 框架
 - [FAISS](https://github.com/facebookresearch/faiss) - 向量检索库
 - [Python](https://www.python.org/) - 编程语言
 
----
+***
 
 <div align="center">
 
 **🏥 医疗 Agent - 让 AI 助力医疗健康**
 
-[⬆️ 返回顶部](#-医疗 agent---全维度工业级-python-项目)
+\[⬆️ 返回顶部]\(#-医疗 agent---全维度工业级-python-项目)
 
 </div>
