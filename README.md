@@ -1,13 +1,17 @@
 # 🏥 医疗 Agent - 全维度工业级 Python 项目
 
-[!\[Python 3.10+\](https://img.shields.io/badge/python-3.10+-blue.svg null)](https://www.python.org/downloads/)
-[!\[Streamlit\](https://img.shields.io/badge/streamlit-1.55.0-red.svg null)](https://streamlit.io)
-[!\[License: MIT\](https://img.shields.io/badge/License-MIT-yellow.svg null)](https://opensource.org/licenses/MIT)
-[!\[Status\](https://img.shields.io/badge/status-active-success.svg null)]()
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.55.0-red.svg)](https://streamlit.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/状态-开发中-orange.svg)]()
+
+> ⚠️ **项目状态**: 开发中 - 核心功能已完成，持续完善中
 
 基于 LLM 的医疗智能问答系统，自主实现 LLM 调用、RAG 检索、意图识别和业务处理核心逻辑，无 LangChain 绑定，工业级生产就绪。
 
 ## ✨ 核心特性
+
+### ✅ 已完成
 
 - 🔧 **原生 LLM 调用** - 自主封装 OpenAI 兼容 API，支持重试/降级机制
 - 📚 **RAG 知识增强** - FAISS 向量库 + 智谱 AI Embedding，支持文档检索
@@ -16,6 +20,15 @@
 - 🌐 **Web 测试面板** - Streamlit 可视化界面，实时对话测试
 - 🛡️ **工业级标准** - 完善的异常处理、日志记录、性能追踪
 - 🔒 **安全合规** - 数据脱敏、API Key 管理、请求限流
+
+### 🚧 开发中
+
+- 📊 **性能监控** - 实时监控仪表板，性能指标可视化
+- 💾 **持久化存储** - 对话历史、用户数据持久化
+- 🔐 **用户认证** - 多用户支持，权限管理
+- 📱 **移动端适配** - 响应式设计，移动端优化
+- 🧪 **测试覆盖** - 单元测试、集成测试覆盖率提升
+- 📖 **API 文档** - 完整的 API 接口文档
 
 ## 🚀 快速开始
 
@@ -432,6 +445,8 @@ python main.py --web --env .env.dev
 
 ### v1.0.0 (2026-03-13)
 
+**核心功能** - 已完成 ✅
+
 - ✅ LLM 模块 - 原生 API 调用
 - ✅ RAG 模块 - 知识检索增强
 - ✅ 意图识别 - 4 类意图分类
@@ -440,21 +455,23 @@ python main.py --web --env .env.dev
 - ✅ 异常处理 - 工业级标准
 - ✅ 日志记录 - 性能追踪
 
+**待完善功能** - 开发中 🚧
+
 ## 📄 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
 
 ## 👥 开发团队
 
-- **项目负责人**: \[kyan]
-- **核心开发**: \[kyan]
-- **特别感谢**: 智谱 AI 提供的 API 支持、Trae、
+- **项目负责人**: [kyan]
+- **核心开发**: [kyan]
+- **特别感谢**: 智谱 AI 提供的 API 支持、Trae IDE
 
 ## 📧 联系方式
 
-- **项目地址**: \[[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]
-- **问题反馈**: \[[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]
-- **邮箱**: \[2957837612\@qq.com]
+- **项目地址**: [[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)](https://github.com/Ryan-Shida/medical-agent)
+- **问题反馈**: [[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)](https://github.com/Ryan-Shida/medical-agent/issues)
+- **邮箱**: [2957837612@qq.com](mailto:2957837612@qq.com)
 
 ## 🙏 致谢
 
@@ -465,12 +482,19 @@ python main.py --web --env .env.dev
 - [FAISS](https://github.com/facebookresearch/faiss) - 向量检索库
 - [Python](https://www.python.org/) - 编程语言
 
-***
+---
 
 <div align="center">
 
 **🏥 医疗 Agent - 让 AI 助力医疗健康**
 
-\[⬆️ 返回顶部]\(#-医疗 agent---全维度工业级-python-项目)
+[⬆️ 返回顶部](#-医疗-agent---全维度工业级-python-项目)
+
+![GitHub stars](https://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social)
+![GitHub forks](https://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social)
+![GitHub issues](https://img.shields.io/github/issues/Ryan-Shida/medical-agent)
+![GitHub license](https://img.shields.io/github/license/Ryan-Shida/medical-agent)
+
+**🚧 项目持续开发中，欢迎 Star ⭐ 和关注！**
 
 </div>
