@@ -1,9 +1,9 @@
 # 🏥 医疗 Agent - 全维度工业级 Python 项目
 
-[!\[Python 3.10+\](https://img.shields.io/badge/python-3.10+-blue.svg null)](https://www.python.org/downloads/)
-[!\[Streamlit\](https://img.shields.io/badge/streamlit-1.55.0-red.svg null)](https://streamlit.io)
-[!\[License: MIT\](https://img.shields.io/badge/License-MIT-yellow.svg null)](https://opensource.org/licenses/MIT)
-[!\[Status\](https://img.shields.io/badge/状态-开发中-orange.svg null)]()
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
+[![Streamlit](https://img.shields.io/badge/streamlit-1.55.0-red.svg)](https://streamlit.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Status](https://img.shields.io/badge/状态-开发中-orange.svg)]()
 
 > ⚠️ **项目状态**: 开发中 - 核心功能已完成，持续完善中
 
@@ -463,15 +463,15 @@ python main.py --web --env .env.dev
 
 ## 👥 开发团队
 
-- **项目负责人**: \[kyan]
-- **核心开发**: \[kyan]
+- **项目负责人**: [kyan]
+- **核心开发**: [kyan]
 - **特别感谢**: 智谱 AI 提供的 API 支持、Trae IDE
 
 ## 📧 联系方式
 
-- **项目地址**: \[[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]\(<https://github.com/Ryan-Shida/medical-agent>)
-- **问题反馈**: \[[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]\(<https://github.com/Ryan-Shida/medical-agent/issues>)
-- **邮箱**: <2957837612@qq.com>
+- **项目地址**: [[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]
+- **问题反馈**: [[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]
+- **邮箱**: [2957837612@qq.com](mailto:2957837612@qq.com)
 
 ## 🙏 致谢
 
@@ -482,7 +482,7 @@ python main.py --web --env .env.dev
 - [FAISS](https://github.com/facebookresearch/faiss) - 向量检索库
 - [Python](https://www.python.org/) - 编程语言
 
-***
+---
 
 <div align="center">
 
@@ -490,10 +490,10 @@ python main.py --web --env .env.dev
 
 [⬆️ 返回顶部](#-医疗-agent---全维度工业级-python-项目)
 
-!\[GitHub stars]\(https\://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social null)
-!\[GitHub forks]\(https\://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social null)
-!\[GitHub issues]\(https\://img.shields.io/github/issues/Ryan-Shida/medical-agent null)
-!\[GitHub license]\(https\://img.shields.io/github/license/Ryan-Shida/medical-agent null)
+![GitHub stars](https://img.shields.io/github/stars/Ryan-Shida/medical-agent?style=social null)
+![GitHub forks](https://img.shields.io/github/forks/Ryan-Shida/medical-agent?style=social null)
+![GitHub issues](https://img.shields.io/github/issues/Ryan-Shida/medical-agent null)
+![GitHub license](https://img.shields.io/github/license/Ryan-Shida/medical-agent null)
 
 **🚧 项目持续开发中，欢迎 Star ⭐ 和关注！**
 
