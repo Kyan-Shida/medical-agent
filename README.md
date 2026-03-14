@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
 [![FastAPI](https://img.shields.io/badge/fastapi-0.104-green.svg)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/状态 - 开发中-orange.svg)]()
+[![状态](https://img.shields.io/badge/状态-开发中-orange.svg)]()
 
 > ⚠️ **项目状态**: 开发中 - 核心功能已完成，持续完善中
 
