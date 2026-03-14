@@ -42,7 +42,15 @@ print("正在启动 Streamlit 服务...")
 print()
 print("访问地址：http://localhost:8501")
 print()
+print("提示：按 Ctrl+C 停止服务")
+print()
 print("=" * 80)
 print()
 
-subprocess.run(cmd)
+try:
+    subprocess.run(cmd)
+except KeyboardInterrupt:
+    print("\n")
+    print("=" * 80)
+    print("👋 Web 面板已停止")
+    print("=" * 80)

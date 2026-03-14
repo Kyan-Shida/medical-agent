@@ -1,0 +1,54 @@
+# 强制 Git 使用 UTF-8 无 BOM 编码
+# 这会确保所有文本文件在提交时都是 UTF-8 without BOM
+
+# Python 文件
+*.py text eol=lf working-tree-encoding=UTF-8
+
+# Markdown 文件
+*.md text eol=lf working-tree-encoding=UTF-8
+
+# 配置文件
+*.txt text eol=lf working-tree-encoding=UTF-8
+*.toml text eol=lf working-tree-encoding=UTF-8
+*.yaml text eol=lf working-tree-encoding=UTF-8
+*.yml text eol=lf working-tree-encoding=UTF-8
+*.json text eol=lf working-tree-encoding=UTF-8
+*.ini text eol=lf working-tree-encoding=UTF-8
+*.cfg text eol=lf working-tree-encoding=UTF-8
+*.conf text eol=lf working-tree-encoding=UTF-8
+
+# 环境变量文件
+.env text eol=lf working-tree-encoding=UTF-8
+.env.* text eol=lf working-tree-encoding=UTF-8
+
+# Shell 脚本
+*.sh text eol=lf working-tree-encoding=UTF-8
+*.bat text eol=lf working-tree-encoding=UTF-8
+*.cmd text eol=lf working-tree-encoding=UTF-8
+*.ps1 text eol=lf working-tree-encoding=UTF-8
+
+# Docker 文件
+Dockerfile text eol=lf working-tree-encoding=UTF-8
+docker-compose*.yml text eol=lf working-tree-encoding=UTF-8
+
+# 其他文本文件
+*.log text eol=lf working-tree-encoding=UTF-8
+*.rst text eol=lf working-tree-encoding=UTF-8
+LICENSE text eol=lf working-tree-encoding=UTF-8
+CHANGELOG text eol=lf working-tree-encoding=UTF-8
+
+# 二进制文件（排除）
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.docx binary
+*.xlsx binary
+*.pyc binary
+*.pyo binary
+*.whl binary
+*.so binary
+*.dll binary
+*.exe binary
