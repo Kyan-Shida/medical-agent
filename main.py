@@ -21,89 +21,213 @@ from utils.exception_handler import handle_exception
 from utils.log_enhanced import track_performance
 
 
+def show_menu():
+    """显示交互式菜单"""
+    print("=" * 80)
+    print("🏥 医疗 Agent - 主菜单")
+    print("=" * 80)
+    print()
+    print("请选择功能：")
+    print()
+    print("  1. 测试 LLM 连接")
+    print("  2. 一键启动 Web 前端（API + React）⭐ 推荐")
+    print("  3. 启动产品经理数据面板")
+    print("  4. 交互式聊天")
+    print("  5. 启动旧版 Web 面板（Streamlit）")
+    print("  6. 运行测试")
+    print("  0. 退出")
+    print()
+    print("=" * 80)
+    return input("请输入选项 (0-6): ").strip()
+
+
 def main():
     """主函数"""
-    parser = argparse.ArgumentParser(
-        description="医疗 Agent",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-示例:
-  python main.py                    # 测试 LLM 连接
-  python main.py --chat             # 交互式聊天
-  python main.py --web              # 启动 Web 面板
-  python main.py --test             # 运行测试
-  python main.py --env .env.prod    # 使用生产环境配置
-        """,
-    )
-    parser.add_argument(
-        "--env",
-        type=str,
-        default=".env.dev",
-        help="环境配置文件 (默认：.env.dev)",
-    )
-    parser.add_argument(
-        "--chat",
-        action="store_true",
-        help="交互式聊天模式",
-    )
-    parser.add_argument(
-        "--test",
-        action="store_true",
-        help="运行测试",
-    )
-    parser.add_argument(
-        "--web",
-        action="store_true",
-        help="启动 Web 面板",
-    )
-    parser.add_argument(
-        "--log-level",
-        type=str,
-        default="INFO",
-        choices=["DEBUG", "INFO", "WARNING", "ERROR"],
-        help="日志级别 (默认：INFO)",
-    )
-
-    args = parser.parse_args()
-
     # 设置日志
-    setup_logger(level=args.log_level)
+    setup_logger(level="INFO")
     logger = get_logger(__name__)
 
-    logger.info("=" * 80)
-    logger.info("🏥 医疗 Agent 启动中...")
-    logger.info("=" * 80)
-
     # 加载配置
-    config = BaseConfig(env_file=args.env)
-    logger.info(f"✅ 配置加载成功：{args.env}")
-    logger.info(f"📊 日志级别：{args.log_level}")
+    config = BaseConfig(env_file=".env.dev")
+    logger.info(f"✅ 配置加载成功：.env.dev")
 
-    if args.test:
-        # 运行测试
-        run_tests(config)
-    elif args.chat:
-        # 交互式聊天
-        interactive_chat(config)
-    elif args.web:
-        # 启动 Web 面板
-        start_web(config)
-    else:
-        # 默认模式：测试 LLM 连接
-        test_llm_connection(config)
+    while True:
+        choice = show_menu()
+        print()
+
+        if choice == "1":
+            # 测试 LLM 连接
+            test_llm_connection(config)
+        elif choice == "2":
+            # 一键启动 Web 前端
+            start_frontend(config)
+        elif choice == "3":
+            # 启动产品经理数据面板
+            start_metrics(config)
+        elif choice == "4":
+            # 交互式聊天
+            interactive_chat(config)
+        elif choice == "5":
+            # 启动旧版 Web 面板
+            start_web(config)
+        elif choice == "6":
+            # 运行测试
+            run_tests(config)
+        elif choice == "0":
+            # 退出
+            logger.info("=" * 80)
+            logger.info("👋 再见！")
+            logger.info("=" * 80)
+            sys.exit(0)
+        else:
+            print("❌ 无效的选项，请重新选择")
+            print()
+
+
+@handle_exception(default_message="一键启动 Web 前端失败")
+def start_frontend(config):
+    """
+    一键启动 Web 前端
+    同时启动 API 服务和 React 前端
+    """
+    import subprocess
+    import time
+    import sys
+
+    logger = get_logger(__name__)
+    logger.info("=" * 80)
+    logger.info("🚀 一键启动 Web 前端")
+    logger.info("=" * 80)
+    logger.info("")
+    logger.info("[1/2] 正在启动 API 服务...")
+
+    # 启动 API 服务
+    api_process = subprocess.Popen(
+        [sys.executable, "web/run_api.py"],
+        cwd=project_root,
+    )
+    logger.info("      ✅ API 服务已启动")
+    logger.info("")
+
+    # 等待 3 秒
+    time.sleep(3)
+
+    logger.info("[2/2] 正在启动前端服务...")
+
+    # 启动前端服务
+    frontend_process = subprocess.Popen(
+        [sys.executable, "web/start_frontend.py"],
+        cwd=project_root,
+    )
+    logger.info("      ✅ 前端服务已启动")
+    logger.info("")
+
+    logger.info("=" * 80)
+    logger.info("🎉 启动完成！")
+    logger.info("=" * 80)
+    logger.info("")
+    logger.info("访问地址:")
+    logger.info("  🌐 Web 前端：http://localhost:3000")
+    logger.info("  📡 API 服务：http://localhost:8000")
+    logger.info("  📖 API 文档：http://localhost:8000/docs")
+    logger.info("")
+    logger.info("提示:")
+    logger.info("  - 按 Ctrl+C 可停止所有服务")
+    logger.info("  - 关闭窗口可完全退出")
+    logger.info("")
+
+    # 等待进程结束
+    try:
+        api_process.wait()
+        frontend_process.wait()
+    except KeyboardInterrupt:
+        logger.info("\n👋 服务已停止")
+        sys.exit(0)
+
+
+@handle_exception(default_message="启动数据面板失败")
+def start_metrics(config):
+    """
+    启动产品经理数据面板
+    基于 Streamlit 实现
+    """
+    import subprocess
+    import sys
+    import os
+
+    logger = get_logger(__name__)
+    
+    # 设置环境变量
+    os.environ["STREAMLIT_BROWSER_GATHER_USAGE_STATS"] = "false"
+    
+    # 构建命令
+    app_path = project_root / "web" / "metrics_dashboard.py"
+    cmd = [
+        sys.executable,
+        "-m",
+        "streamlit",
+        "run",
+        str(app_path),
+        "--server.port", "8502",
+        "--server.address", "localhost",
+        "--browser.serverAddress", "localhost",
+    ]
+    
+    logger.info("=" * 80)
+    logger.info("📊 产品经理数据面板")
+    logger.info("=" * 80)
+    logger.info("")
+    logger.info("正在启动数据面板服务...")
+    logger.info("")
+    logger.info("访问地址：http://localhost:8502")
+    logger.info("")
+    logger.info("提示：按 Ctrl+C 停止服务")
+    logger.info("")
+    logger.info("=" * 80)
+    logger.info("")
+    
+    try:
+        subprocess.run(cmd)
+    except KeyboardInterrupt:
+        logger.info("\n👋 数据面板已停止")
+        sys.exit(0)
 
 
 @handle_exception(default_message="测试运行失败")
 def run_tests(config):
     """运行测试"""
-    import pytest
+    import subprocess
+    import sys
 
     logger = get_logger(__name__)
     logger.info("=" * 80)
     logger.info("🧪 开始运行测试...")
     logger.info("=" * 80)
+    logger.info("")
 
-    pytest.main(["-v", "tests/"])
+    # 使用 subprocess 运行 pytest，确保路径正确
+    tests_dir = project_root / "tests"
+    if not tests_dir.exists():
+        logger.error(f"❌ 测试目录不存在：{tests_dir}")
+        return
+
+    logger.info(f"测试目录：{tests_dir}")
+    logger.info("")
+
+    try:
+        result = subprocess.run(
+            [sys.executable, "-m", "pytest", "-v", str(tests_dir)],
+            cwd=project_root,
+        )
+        logger.info("")
+        logger.info("=" * 80)
+        if result.returncode == 0:
+            logger.info("✅ 所有测试通过！")
+        else:
+            logger.warning(f"⚠️  部分测试失败，退出码：{result.returncode}")
+        logger.info("=" * 80)
+    except Exception as e:
+        logger.error(f"❌ 测试运行失败：{e}")
 
 
 @handle_exception(default_message="启动 Web 面板失败")

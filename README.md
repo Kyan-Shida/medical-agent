@@ -1,9 +1,10 @@
 # 🏥 医疗 Agent - 全维度工业级 Python 项目
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Streamlit](https://img.shields.io/badge/streamlit-1.55.0-red.svg)](https://streamlit.io)
+[![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/fastapi-0.104-green.svg)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Status](https://img.shields.io/badge/状态-开发中-orange.svg)]()
+[![Status](https://img.shields.io/badge/状态 - 开发中-orange.svg)]()
 
 > ⚠️ **项目状态**: 开发中 - 核心功能已完成，持续完善中
 
@@ -18,6 +19,7 @@
 - 🎯 **意图识别** - LLM 分类 + 规则过滤，支持 4 类意图（医疗/闲聊/无法回答/健康计划）
 - 💼 **业务处理器** - 4 种专业处理器，支持 RAG 增强医疗回答
 - 🌐 **Web 测试面板** - Streamlit 可视化界面，实时对话测试
+- ⚡ **工业级 API** - FastAPI + React 全栈架构，生产环境就绪
 - 🛡️ **工业级标准** - 完善的异常处理、日志记录、性能追踪
 - 🔒 **安全合规** - 数据脱敏、API Key 管理、请求限流
 
@@ -39,38 +41,56 @@
 git clone <your-repo-url>
 cd medical
 
-# 安装依赖
+# 安装 Python 依赖
 pip install -r requirements.txt
+
+# 安装前端依赖（可选，仅当需要 Web 界面时）
+cd web/frontend
+npm install
+cd ../..
 
 # 配置环境变量
 cp .env.example .env.dev
 # 编辑 .env.dev，填入你的 API Key
 ```
 
-### 2. 测试连接
+### 2. 启动方式
+
+#### 方式 1：交互式菜单（最简单 ⭐）
 
 ```bash
-# 快速测试
 python main.py
-
-# 完整测试
-python scripts/test_connection.py
 ```
 
-### 3. 运行模式
+**菜单选项：**
+- `1` - 测试 LLM 连接
+- `2` - 一键启动 Web 前端（API + React）⭐ 推荐
+- `3` - 启动产品经理数据面板
+- `4` - 交互式聊天
+- `5` - 启动旧版 Web 面板（Streamlit）
+- `6` - 运行测试
+- `0` - 退出
+
+#### 方式 2：手动启动 Web 前端
 
 ```bash
-# 模式 1：交互式聊天（推荐）
-python main.py --chat
+# 终端 1：启动 API 服务
+python web/run_api.py
 
-# 模式 2：启动 Web 面板
-python main.py --web
+# 终端 2：启动 React 前端
+python web/start_frontend.py
+```
 
-# 模式 3：运行测试
-python main.py --test
+访问 http://localhost:3000
 
-# 模式 4：仅测试连接
-python main.py
+#### 方式 3：快速测试
+
+```bash
+# 测试 LLM 连接
+python scripts/test_connection.py
+
+# 运行所有测试
+python -m pytest tests/ -v
 ```
 
 ## 📊 功能演示
@@ -78,7 +98,8 @@ python main.py
 ### 交互式聊天
 
 ```bash
-python main.py --chat
+python main.py
+# 选择选项 4
 ```
 
 **输出示例**：
@@ -96,13 +117,34 @@ python main.py --chat
 --------------------------------------------------------------------------------
 ```
 
-### Web 测试面板
+### Web 界面
+
+**新版（React + FastAPI）：** ⭐ 推荐
 
 ```bash
-python main.py --web
+python main.py
+# 选择选项 2 - 一键启动 Web 前端
 ```
 
-访问 <http://localhost:8501> 查看可视化界面。
+访问 http://localhost:3000 体验工业级前端！
+
+**旧版（Streamlit）：**
+
+```bash
+python main.py
+# 选择选项 5
+```
+
+访问 http://localhost:8501 查看可视化界面。
+
+**产品经理数据面板：**
+
+```bash
+python main.py
+# 选择选项 3
+```
+
+访问 http://localhost:8502 查看数据指标。
 
 ## 🏗️ 技术架构
 
@@ -144,10 +186,23 @@ python main.py --web
 
 ### 技术栈
 
+**前端（新版）：**
+- React 18.2
+- TypeScript 5.0
+- Tailwind CSS 3.3
+- Framer Motion（动画）
+- Axios（HTTP 客户端）
+
+**后端（API 服务）：**
+- FastAPI 0.104
+- Uvicorn（ASGI 服务器）
+- Pydantic（数据验证）
+
+**核心模块：**
 - **LLM**: 智谱 AI GLM-4-Flash (OpenAI 兼容 API)
 - **Embedding**: 智谱 AI Embedding-2
 - **向量库**: FAISS (Facebook AI Similarity Search)
-- **Web 框架**: Streamlit
+- **Web 框架**: Streamlit（旧版） / FastAPI + React（新版）
 - **文档处理**: PyPDF2, python-docx
 - **重试机制**: Tenacity
 - **缓存**: Redis (可选)
@@ -160,8 +215,8 @@ medical/
 ├── .env.example                # 环境配置示例
 ├── .gitignore                  # Git 忽略文件
 ├── README.md                   # 项目说明
-├── requirements.txt            # 依赖包
-├── main.py                     # 主入口（支持聊天/Web/测试）
+├── requirements.txt            # Python 依赖包
+├── main.py                     # 主入口（交互式菜单）
 ├── Dockerfile                  # Docker 配置
 ├── docker-compose.yml          # Docker Compose 配置
 │
@@ -170,10 +225,12 @@ medical/
 │   ├── base_config.py          # 基础配置
 │   ├── llm_config.py           # LLM 配置
 │   ├── rag_config.py           # RAG 配置
+│   ├── security_config.py      # 安全配置
 │   └── web_config.py           # Web 配置
 │
 ├── core/                       # 核心业务逻辑
 │   ├── __init__.py
+│   ├── health_check.py         # 健康检查
 │   ├── llm/                    # LLM 模块
 │   │   ├── __init__.py
 │   │   ├── client.py           # LLM 客户端
@@ -195,50 +252,64 @@ medical/
 │   ├── __init__.py
 │   ├── log_utils.py            # 日志工具
 │   ├── log_enhanced.py         # 增强日志（性能追踪）
-│   ├── exception_utils.py      # 异常工具
 │   ├── exception_handler.py    # 异常处理器
+│   ├── exception_utils.py      # 异常工具
 │   ├── retry_utils.py          # 重试工具
-│   └── cache_utils.py          # 缓存工具
+│   ├── cache_utils.py          # 缓存工具
+│   ├── metrics.py              # 性能指标
+│   └── security_utils.py       # 安全工具
 │
-├── web/                        # Web 测试面板
-│   ├── __init__.py
-│   ├── app.py                  # Streamlit 应用
-│   ├── run_app.py              # 启动脚本
-│   └── README.md               # Web 面板说明
+├── api/                        # API 服务
+│   └── app.py                  # FastAPI 应用
+│
+├── web/                        # Web 界面
+│   ├── app.py                  # Streamlit 应用（旧版）
+│   ├── metrics_dashboard.py    # 数据面板
+│   ├── run_api.py              # API 启动脚本
+│   ├── run_app.py              # Streamlit 启动脚本
+│   ├── run_metrics.py          # 数据面板启动脚本
+│   ├── start_frontend.py       # React 前端启动脚本
+│   └── frontend/               # React 前端项目
+│       ├── public/
+│       ├── src/
+│       ├── package.json
+│       └── ...
 │
 ├── scripts/                    # 工具脚本
 │   ├── build_knowledge_base.py # 构建知识库
+│   ├── chat.py                 # 命令行聊天
+│   ├── check_github_ready.py   # GitHub 检查
+│   ├── clean_bom.py            # 清理 BOM
 │   ├── test_connection.py      # 连接测试
-│   └── chat.py                 # 命令行聊天
+│   ├── test_intent_classifier.py # 意图分类器测试
+│   └── verify_web.py           # Web 验证
 │
 ├── tests/                      # 测试文件
 │   ├── __init__.py
-│   ├── conftest.py             # pytest 配置
 │   ├── test_config.py          # 配置测试
 │   ├── test_integration.py     # 集成测试
-│   ├── llm/                    # LLM 测试
-│   ├── rag/                    # RAG 测试
+│   ├── test_optimization.py    # 优化测试
 │   ├── intent/                 # 意图识别测试
-│   └── utils/                  # 工具测试
+│   ├── llm/                    # LLM 测试
+│   └── rag/                    # RAG 测试
 │
 ├── examples/                   # 示例代码
 │   └── basic_usage.py          # 基础使用示例
 │
 ├── docs/                       # 文档
+│   ├── 文档索引.md             # 📚 文档导航
 │   ├── guides/                 # 使用指南
-│   ├── api/                    # API 文档
-│   ├── summaries/              # 总结文档
 │   ├── bugfixes/               # Bug 修复记录
 │   └── optimization/           # 优化指南
 │
-├── knowledge_base/             # 知识库文件
-│   └── 儿童医疗.docx
+├── knowledge_base/             # 知识库文件（可选）
+│   └── *.docx, *.pdf, *.txt
 │
-├── cache/                      # 缓存目录（自动生成）
+├── cache/                      # 缓存目录（自动生成，已忽略）
 │   └── faiss_index/            # FAISS 向量索引
 │
-└── logs/                       # 日志目录（自动生成）
-    └── app.log                 # 应用日志
+└── logs/                       # 日志目录（自动生成，已忽略）
+    └── *.log                   # 日志文件
 ```
 
 ## 📖 使用指南
@@ -291,7 +362,12 @@ if result["success"]:
 ### 运行所有测试
 
 ```bash
-python main.py --test
+# 方式 1：通过主菜单
+python main.py
+# 选择选项 6
+
+# 方式 2：直接运行 pytest
+python -m pytest tests/ -v
 ```
 
 ### 连接测试
@@ -304,6 +380,12 @@ python scripts/test_connection.py
 
 ```bash
 python examples/basic_usage.py
+```
+
+### 测试覆盖率
+
+```bash
+python -m pytest tests/ -v --cov=. --cov-report=html
 ```
 
 ## 📊 测试用例

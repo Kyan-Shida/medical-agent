@@ -209,8 +209,10 @@ class IntentClassifier:
 
         # 解析响应
         try:
+            # response 是 dict，需要提取 content
+            content = response["choices"][0]["message"]["content"].strip()
+            
             # 尝试提取 JSON
-            content = response.content.strip()
             json_start = content.find("{")
             json_end = content.rfind("}") + 1
 
@@ -222,6 +224,14 @@ class IntentClassifier:
 
             return result
 
+        except (KeyError, IndexError) as e:
+            self.logger.error(f"响应解析失败：{e}")
+            return {
+                "intent": "medical",
+                "confidence": 0.5,
+                "reason": "响应解析失败",
+                "sub_category": None,
+            }
         except json.JSONDecodeError as e:
             self.logger.warning(f"JSON 解析失败：{e}，使用默认分类")
             return {

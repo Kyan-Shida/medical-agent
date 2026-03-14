@@ -1,276 +1,348 @@
-# 项目文件结构整理方案
+# 📁 项目结构总结
 
-## 当前问题
+本文档说明项目的文件结构和组织方式。
 
-1. **文档分散** - docs 目录下文件过多，分类不清晰
-2. **测试文件混乱** - tests 目录结构不够清晰
-3. **缺少示例目录** - 示例代码和脚本混在一起
-4. **配置文件分散** - 配置文件分布在多个位置
+---
 
-## 新的项目结构
+## 🎯 整理成果
+
+### 已删除的冗余文件
+
+| 类型 | 文件/目录 | 原因 |
+|------|---------|------|
+| 临时文档 | `整理完成说明.md` | 项目整理临时文档 |
+| 临时文档 | `docs/交互式菜单完成.md` | 功能开发完成文档 |
+| 临时文档 | `docs/可靠启动方案完成.md` | 功能开发完成文档 |
+| 临时文档 | `docs/启动方案更新完成.md` | 功能开发完成文档 |
+| 临时文档 | `docs/数据面板集成完成.md` | 功能开发完成文档 |
+| 临时文档 | `docs/文档中文化完成.md` | 文档整理临时文档 |
+| 临时文档 | `docs/路径问题修复指南.md` | Bug 修复临时文档 |
+| 临时文档 | `docs/项目整理说明.md` | 项目整理临时文档 |
+| 临时数据 | `exports/` | 临时会话导出文件 |
+
+**总计清理：** 9 个冗余文件/目录
+
+### 保留的核心文档
+
+**文档索引：**
+- `docs/文档索引.md` - 所有文档的导航入口
+
+**使用指南：**
+- `docs/guides/快速启动指南.md`
+- `docs/guides/环境配置指南.md`
+- `docs/guides/业务处理器指南.md`
+- `docs/guides/工业级 Web 前端指南.md`
+- 等 10+ 个专业指南
+
+**Bug 修复：**
+- `docs/bugfixes/BOM 编码错误修复.md`
+- `docs/bugfixes/Web 面板空值检查修复.md`
+- `docs/bugfixes/意图分类器修复.md`
+
+**优化指南：**
+- `docs/optimization/Token 优化指南.md`
+- `docs/optimization/Token 优化总结.md`
+
+---
+
+## 📂 完整项目结构
 
 ```
 medical/
-├── .env.dev                    # 开发环境配置
-├── .env.prod                   # 生产环境配置
-├── .env.test                   # 测试环境配置
-├── .gitignore                  # Git 忽略文件
-├── README.md                   # 项目说明
-├── requirements.txt            # 依赖包
-├── main.py                     # 主入口
-├── Dockerfile                  # Docker 配置
-├── docker-compose.yml          # Docker Compose 配置
 │
-├── config/                     # 配置模块
+├── 📄 核心文件
+│   ├── README.md                     # 项目主文档
+│   ├── CHANGELOG.md                  # 更新日志
+│   ├── LICENSE                       # MIT 许可证
+│   ├── requirements.txt              # Python 依赖
+│   ├── main.py                       # 主入口（交互式菜单）
+│   ├── .env.example                  # 环境变量模板
+│   ├── .gitignore                    # Git 忽略配置
+│   ├── .gitattributes                # Git 属性
+│   ├── Dockerfile                    # Docker 配置
+│   ├── docker-compose.yml            # Docker Compose
+│   ├── GITHUB_UPLOAD_GUIDE.md        # GitHub 上传指南 ⭐ 新增
+│   └── PROJECT_STRUCTURE.md          # 项目结构说明 ⭐ 新增
+│
+├── ⚙️ 配置模块 (config/)
 │   ├── __init__.py
-│   ├── base_config.py          # 基础配置
-│   ├── llm_config.py           # LLM 配置
-│   ├── rag_config.py           # RAG 配置
-│   ├── web_config.py           # Web 配置
-│   └── security_config.py      # 安全配置
+│   ├── base_config.py                # 基础配置
+│   ├── llm_config.py                 # LLM 配置
+│   ├── rag_config.py                 # RAG 配置
+│   ├── security_config.py            # 安全配置
+│   └── web_config.py                 # Web 配置
 │
-├── core/                       # 核心业务逻辑
+├── 🧠 核心业务 (core/)
 │   ├── __init__.py
-│   ├── llm/                    # LLM 模块
+│   ├── health_check.py               # 健康检查
+│   │
+│   ├── llm/                          # LLM 模块
 │   │   ├── __init__.py
-│   │   ├── client.py           # LLM 客户端
-│   │   ├── parser.py           # 响应解析
-│   │   └── multi_round.py      # 多轮对话
-│   ├── rag/                    # RAG 模块
+│   │   ├── client.py                 # LLM 客户端
+│   │   ├── parser.py                 # 响应解析
+│   │   └── multi_round.py            # 多轮对话
+│   │
+│   ├── rag/                          # RAG 模块
 │   │   ├── __init__.py
-│   │   ├── document_loader.py  # 文档加载
-│   │   ├── text_splitter.py    # 文本分割
-│   │   ├── vector_store.py     # 向量存储
-│   │   └── retriever.py        # 检索器
-│   ├── intent/                 # 意图识别模块
-│   │   ├── __init__.py
-│   │   ├── classifier.py       # 分类器
-│   │   ├── router.py           # 路由器
-│   │   └── handlers.py         # 业务处理器
-│   └── health_check.py         # 健康检查
-│
-├── utils/                      # 工具模块
-│   ├── __init__.py
-│   ├── log_utils.py            # 日志工具
-│   ├── log_enhanced.py         # 增强日志
-│   ├── exception_utils.py      # 异常工具
-│   ├── exception_handler.py    # 异常处理器
-│   ├── retry_utils.py          # 重试工具
-│   ├── cache_utils.py          # 缓存工具
-│   └── security_utils.py       # 安全工具
-│
-├── web/                        # Web 测试面板
-│   ├── __init__.py
-│   ├── app.py                  # Streamlit 应用
-│   ├── run_app.py              # 启动脚本
-│   └── README.md               # Web 面板说明
-│
-├── scripts/                    # 工具脚本
-│   ├── build_knowledge_base.py # 构建知识库
-│   ├── chat.py                 # 命令行聊天
-│   └── test_connection.py      # 连接测试
-│
-├── tests/                      # 测试文件
-│   ├── __init__.py
-│   ├── conftest.py             # pytest 配置
-│   ├── test_config.py          # 配置测试
-│   ├── test_integration.py     # 集成测试
-│   ├── llm/                    # LLM 测试
-│   │   ├── __init__.py
-│   │   ├── test_llm_client.py
-│   │   └── test_llm_parser.py
-│   ├── rag/                    # RAG 测试
-│   │   ├── __init__.py
-│   │   ├── test_document_loader.py
-│   │   ├── test_text_splitter.py
-│   │   ├── test_vector_store.py
-│   │   └── test_retriever.py
-│   ├── intent/                 # 意图识别测试
-│   │   ├── __init__.py
-│   │   ├── test_classifier.py
-│   │   ├── test_router.py
-│   │   └── test_handlers.py
-│   └── utils/                  # 工具测试
+│   │   ├── document_loader.py        # 文档加载
+│   │   ├── text_splitter.py          # 文本分割
+│   │   ├── vector_store.py           # 向量存储
+│   │   └── retriever.py              # 检索器
+│   │
+│   └── intent/                       # 意图识别模块
 │       ├── __init__.py
-│       ├── test_log_utils.py
-│       └── test_exception_handler.py
+│       ├── classifier.py             # 分类器
+│       ├── router.py                 # 路由器
+│       └── handlers.py               # 业务处理器
 │
-├── examples/                   # 示例代码
-│   ├── basic_usage.py          # 基础使用示例
-│   ├── advanced_usage.py       # 高级使用示例
-│   └── web_panel_demo.py       # Web 面板示例
+├── 🛠️ 工具模块 (utils/)
+│   ├── __init__.py
+│   ├── log_utils.py                  # 日志工具
+│   ├── log_enhanced.py               # 增强日志（性能追踪）
+│   ├── exception_handler.py          # 异常处理器
+│   ├── exception_utils.py            # 异常工具
+│   ├── retry_utils.py                # 重试工具
+│   ├── cache_utils.py                # 缓存工具
+│   ├── metrics.py                    # 性能指标
+│   └── security_utils.py             # 安全工具
 │
-├── docs/                       # 文档
-│   ├── README.md               # 文档说明
-│   ├── guides/                 # 使用指南
-│   │   ├── llm_module.md       # LLM 模块指南
-│   │   ├── rag_module.md       # RAG 模块指南
-│   │   ├── intent_module.md    # 意图识别指南
-│   │   ├── business_handlers.md # 业务处理器指南
-│   │   └── web_panel.md        # Web 面板指南
-│   ├── api/                    # API 文档
-│   │   ├── llm_client.md
-│   │   ├── retriever.md
-│   │   └── classifier.md
-│   ├── summaries/              # 总结文档
-│   │   ├── llm_development.md
-│   │   ├── rag_development.md
-│   │   ├── business_handlers.md
-│   │   └── web_panel.md
-│   ├── bugfixes/               # Bug 修复记录
-│   │   └── web_panel_null_check.md
-│   └── optimization/           # 优化指南
-│       └── token_optimization.md
+├── 🌐 API 服务 (api/)
+│   └── app.py                        # FastAPI 应用
 │
-├── knowledge_base/             # 知识库文件
-│   └── 儿童医疗.docx
+├── 💻 Web 界面 (web/)
+│   ├── app.py                        # Streamlit 应用（旧版）
+│   ├── metrics_dashboard.py          # 数据面板
+│   ├── run_api.py                    # API 启动脚本
+│   ├── run_app.py                    # Streamlit 启动脚本
+│   ├── run_metrics.py                # 数据面板启动脚本
+│   ├── start_frontend.py             # React 前端启动脚本
+│   ├── README.md                     # Web 说明
+│   │
+│   └── frontend/                     # React 前端项目
+│       ├── public/
+│       │   └── index.html
+│       ├── src/
+│       │   ├── api/
+│       │   │   └── client.ts
+│       │   ├── components/
+│       │   │   ├── ChatInput.tsx
+│       │   │   ├── ChatMessage.tsx
+│       │   │   ├── Disclaimer.tsx
+│       │   │   ├── LoadingState.tsx
+│       │   │   ├── QuickTags.tsx
+│       │   │   └── Sidebar.tsx
+│       │   ├── types/
+│       │   │   └── index.ts
+│       │   ├── App.tsx
+│       │   ├── index.css
+│       │   └── index.tsx
+│       ├── .env.example
+│       ├── package.json
+│       ├── tsconfig.json
+│       ├── tailwind.config.js
+│       └── postcss.config.js
 │
-├── cache/                      # 缓存目录（自动生成）
-│   ├── faiss_index/            # FAISS 向量索引
-│   │   ├── documents.pkl
-│   │   └── faiss.index
-│   └── redis/                  # Redis 缓存（可选）
+├── 📜 工具脚本 (scripts/)
+│   ├── build_knowledge_base.py       # 构建知识库
+│   ├── chat.py                       # 命令行聊天
+│   ├── check_github_ready.py         # GitHub 检查
+│   ├── clean_bom.py                  # 清理 BOM
+│   ├── test_connection.py            # 连接测试
+│   ├── test_intent_classifier.py     # 意图分类器测试
+│   └── verify_web.py                 # Web 验证
 │
-├── logs/                       # 日志目录（自动生成）
-│   ├── app.log                 # 应用日志
-│   └── error_app.log           # 错误日志
+├── 🧪 测试文件 (tests/)
+│   ├── __init__.py
+│   ├── test_config.py                # 配置测试
+│   ├── test_integration.py           # 集成测试
+│   ├── test_optimization.py          # 优化测试
+│   │
+│   ├── intent/                       # 意图识别测试
+│   │   ├── test_handlers.py
+│   │   └── test_intent.py
+│   │
+│   ├── llm/                          # LLM 测试
+│   │   └── test_llm_client.py
+│   │
+│   └── rag/                          # RAG 测试
+│       ├── test_rag.py
+│       └── test_rag_simple.py
 │
-└── tmp/                        # 临时文件（自动生成）
-    └── .gitkeep
+├── 📖 示例代码 (examples/)
+│   └── basic_usage.py                # 基础使用示例
+│
+├── 📚 文档 (docs/)
+│   ├── 文档索引.md                   # 📚 文档导航
+│   │
+│   ├── guides/                       # 使用指南
+│   │   ├── BOM 编码预防指南.md
+│   │   ├── LLM 模块开发指南.md
+│   │   ├── RAG 模块开发指南.md
+│   │   ├── Web 数据面板指南.md
+│   │   ├── Web 测试面板指南.md
+│   │   ├── 业务处理器指南.md
+│   │   ├── 产品经理指南.md
+│   │   ├── 工业级 Web 前端指南.md
+│   │   ├── 快速启动指南.md
+│   │   └── 环境配置指南.md
+│   │
+│   ├── bugfixes/                     # Bug 修复记录
+│   │   ├── BOM 编码错误修复.md
+│   │   ├── Web 面板空值检查修复.md
+│   │   └── 意图分类器修复.md
+│   │
+│   └── optimization/                 # 优化指南
+│       ├── Token 优化指南.md
+│       └── Token 优化总结.md
+│
+├── 📦 知识库 (knowledge_base/)       # 可选，大文件已忽略
+│   └── *.docx, *.pdf, *.txt
+│
+├── 💾 缓存 (cache/)                  # 已忽略，自动生成
+│   └── faiss_index/
+│
+└── 📝 日志 (logs/)                   # 已忽略，自动生成
+    └── *.log
 ```
 
-## 目录说明
+---
 
-### 核心目录
+## 📊 目录统计
 
-- **config/** - 所有配置文件
-- **core/** - 核心业务逻辑（LLM、RAG、意图识别）
-- **utils/** - 通用工具模块
-- **web/** - Web 测试面板
-- **scripts/** - 工具脚本
-- **tests/** - 测试文件（按模块分类）
-- **examples/** - 示例代码
-- **docs/** - 文档（分类清晰）
+| 目录 | 文件数 | 说明 |
+|------|-------|------|
+| `config/` | 6 | 配置模块 |
+| `core/` | 13 | 核心业务逻辑 |
+| `utils/` | 9 | 工具模块 |
+| `api/` | 1 | API 服务 |
+| `web/` | 7 + frontend/ | Web 界面 |
+| `scripts/` | 8 | 工具脚本 |
+| `tests/` | 8 | 测试文件 |
+| `examples/` | 1 | 示例代码 |
+| `docs/` | 20+ | 文档 |
 
-### 自动生成目录
+**总计：** 约 70+ 个核心文件
 
-- **cache/** - 缓存文件（向量库、Redis）
-- **logs/** - 日志文件
-- **tmp/** - 临时文件
+---
 
-## 文件迁移计划
+## 🔍 关键文件说明
 
-### 1. 文档整理
+### 入口文件
+
+| 文件 | 用途 | 使用场景 |
+|------|------|---------|
+| `main.py` | 主入口 | 交互式菜单启动 |
+| `web/run_api.py` | API 启动 | 单独启动 API 服务 |
+| `web/start_frontend.py` | 前端启动 | 单独启动 React 前端 |
+| `web/run_app.py` | Streamlit 启动 | 启动旧版 Web 面板 |
+| `web/run_metrics.py` | 数据面板启动 | 启动产品经理数据面板 |
+
+### 核心模块
+
+| 模块 | 关键文件 | 功能 |
+|------|---------|------|
+| LLM | `core/llm/client.py` | LLM 调用、重试、降级 |
+| RAG | `core/rag/retriever.py` | 知识检索、上下文构建 |
+| 意图 | `core/intent/router.py` | 意图识别、路由分发 |
+| 业务 | `core/intent/handlers.py` | 4 种业务处理器 |
+
+### 配置文件
+
+| 文件 | 用途 | 是否提交 |
+|------|------|---------|
+| `.env.example` | 配置模板 | ✅ 是 |
+| `.env.dev` | 开发环境配置 | ❌ 否（敏感） |
+| `.gitignore` | Git 忽略配置 | ✅ 是 |
+
+---
+
+## 🎯 文件查找指南
+
+### 我想...
+
+**修改 LLM 调用逻辑**
+→ `core/llm/client.py`
+
+**添加新的意图类型**
+→ `core/intent/classifier.py` 和 `core/intent/handlers.py`
+
+**修改 Web 界面**
+→ `web/frontend/src/`
+
+**调整 RAG 检索策略**
+→ `core/rag/retriever.py` 和 `core/rag/vector_store.py`
+
+**修改 API 接口**
+→ `api/app.py`
+
+**添加新的测试**
+→ `tests/` 对应目录
+
+**查看配置选项**
+→ `config/` 对应配置文件
+
+**查找使用文档**
+→ `docs/文档索引.md`
+
+---
+
+## 📝 维护建议
+
+### 定期清理
 
 ```bash
-# 移动现有文档到正确位置
-docs/guides/
-  - LLM 模块开发指南.md → guides/llm_module.md
-  - RAG 模块开发指南.md → guides/rag_module.md
-  - business_handlers_guide.md → guides/business_handlers.md
-  - web_panel_guide.md → guides/web_panel.md
+# 清理 Python 缓存
+find . -type d -name "__pycache__" -exec rm -rf {} +
 
-docs/summaries/
-  - 保留所有总结文件
+# 清理日志
+rm -rf logs/*.log
 
-docs/bugfixes/
-  - 保留所有 bug 修复记录
-
-docs/optimization/
-  - 保留所有优化文档
+# 清理临时文件
+rm -rf exports/
+rm -rf *.tmp *.temp
 ```
 
-### 2. 测试文件整理
+### 文档更新
+
+- 新增功能 → 更新 `README.md` 和 `docs/guides/`
+- Bug 修复 → 添加 `docs/bugfixes/`
+- 性能优化 → 添加 `docs/optimization/`
+- 配置变更 → 更新 `.env.example`
+
+### Git 提交规范
 
 ```bash
-# 按模块分类测试文件
-tests/llm/
-  - test_llm_client.py (从 tests/llm/ 移动)
+# 新功能
+git commit -m "feat: 添加 xxx 功能"
 
-tests/rag/
-  - test_rag.py → test_retriever.py
-  - test_rag_simple.py (删除或合并)
+# Bug 修复
+git commit -m "fix: 修复 xxx 问题"
 
-tests/intent/
-  - test_intent.py → test_classifier.py
-  - test_handlers.py (已有)
+# 文档更新
+git commit -m "docs: 更新 xxx 文档"
 
-tests/utils/
-  - 新建测试文件
+# 重构
+git commit -m "refactor: 重构 xxx 模块"
+
+# 性能优化
+git commit -m "perf: 优化 xxx 性能"
 ```
 
-### 3. 创建示例目录
+---
 
-```bash
-# 创建 examples 目录
-examples/
-  - basic_usage.py (基础使用示例)
-  - advanced_usage.py (高级使用示例)
-```
+## 🎊 整理完成
 
-## 清理计划
+项目结构已完全整理，符合以下标准：
 
-### 删除不必要的文件
+- ✅ **清晰**：目录结构明确，职责分明
+- ✅ **简洁**：删除冗余文件，保留核心内容
+- ✅ **规范**：命名统一，符合 Python/TypeScript 规范
+- ✅ **完整**：文档齐全，便于维护和扩展
+- ✅ **安全**：敏感文件已忽略，不会误提交
 
-1. **__pycache__/** - Python 缓存（应加入 .gitignore）
-2. **.pytest_cache/** - pytest 缓存（应加入 .gitignore）
-3. **重复的文档** - 合并内容重复的文档
-4. **过时的测试文件** - 删除不再使用的测试
+**准备就绪，可以上传 GitHub！** 🚀
 
-### 更新 .gitignore
+---
 
-```gitignore
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-
-# 测试
-.pytest_cache/
-.coverage
-htmlcov/
-
-# 缓存
-cache/
-tmp/
-
-# 日志
-logs/
-*.log
-
-# 环境
-.env
-.venv
-venv/
-
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-```
-
-## 实施步骤
-
-1. ✅ 创建新的目录结构
-2. ⏳ 移动文件到新位置
-3. ⏳ 更新导入路径
-4. ⏳ 运行测试验证
-5. ⏳ 更新文档引用
-6. ⏳ 清理旧文件
-
-## 注意事项
-
-1. **保持向后兼容** - 确保移动文件后导入路径正确
-2. **运行所有测试** - 验证文件移动后功能正常
-3. **更新文档** - 更新所有文件路径引用
-4. **备份重要文件** - 移动前备份关键文件
-
-## 预期效果
-
-- ✅ 项目结构清晰易懂
-- ✅ 文档分类合理
-- ✅ 测试组织有序
-- ✅ 易于维护和扩展
+**更新日期：** 2026-03-14  
+**项目版本：** v1.0.0
