@@ -1,4 +1,4 @@
-# 🏥 医疗 Agent - 全维度工业级 Python 项目
+# 🏥 医疗 Agent 项目
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![React](https://img.shields.io/badge/react-18.2-blue.svg)](https://react.dev/)
