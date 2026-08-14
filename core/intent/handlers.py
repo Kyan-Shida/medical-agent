@@ -32,7 +32,7 @@ class MedicalHandler:
         self, query: str, context: Dict[str, Any]
     ) -> Dict[str, Any]:
         """
-        处理医疗问题
+        处理医疗问题（对外接口）
 
         Args:
             query: 用户问题
@@ -114,7 +114,7 @@ class MedicalHandler:
     def _build_medical_system_prompt(
         self, sub_category: Optional[SubCategory]
     ) -> str:
-        """构建医疗系统提示"""
+        """构建医疗系统提示，都一样使用"""
         base_prompt = """你是一个专业、负责、易懂的医疗助手。
 你的职责是回答用户的医疗健康问题，提供准确、科学、实用的建议。
 

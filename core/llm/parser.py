@@ -1,5 +1,7 @@
 """
-LLM 响应解析模块
+``响应解析工具集
+LLM 响应解析模块：
+对 LLM 返回的原始结果做结构化解析（如提取 JSON、分类结果、业务字段），屏蔽不同模型的返回格式差异
 """
 
 import json
@@ -14,7 +16,7 @@ logger = get_logger(__name__)
 
 @dataclass
 class ParsedResponse:
-    """解析后的响应"""
+    """定义解析后的响应类型"""
 
     content: str
     model: str
@@ -157,7 +159,7 @@ class ResponseParser:
         Raises:
             LLMCallError: 解析失败
         """
-        parsed = self.parse(response_data)
+        parsed = self.parse(response_data)  #先转ParsedResponse格式
         content = parsed.content.strip()
 
         # 尝试提取 JSON（处理可能的 markdown 包裹）

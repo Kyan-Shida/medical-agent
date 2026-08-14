@@ -83,7 +83,7 @@ class IntentClassifier:
 
     def classify(self, text: str) -> Dict[str, Any]:
         """
-        分类用户输入
+        分类用户输入（对外接口）
 
         Args:
             text: 用户输入文本

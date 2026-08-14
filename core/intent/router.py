@@ -45,6 +45,30 @@ class IntentRouter:
         # 注册业务处理器
         self._register_business_handlers()
 
+    def register(self, intent_type: IntentType):
+        """
+        注册处理器装饰器
+
+        Args:
+            intent_type: 意图类型
+
+        Returns:
+            装饰器
+
+        Example:
+            @router.register(IntentType.MEDICAL)
+            def handle_medical(query: str, context: dict) -> dict:
+                ...
+        """
+
+        def decorator(func: Callable) -> Callable:
+            self.handlers[intent_type] = func
+            self.logger.debug(f"注册处理器：{intent_type.value} -> {func.__name__}")
+            return func
+
+        return decorator
+
+
     def _register_business_handlers(self):
         """注册业务处理器"""
         # 创建业务处理器实例
@@ -78,29 +102,7 @@ class IntentRouter:
             self.logger.info(f"路由到健康计划处理器：{query[:50]}...")
             return health_plan_handler.handle(query, context)
 
-    def register(self, intent_type: IntentType):
-        """
-        注册处理器装饰器
-
-        Args:
-            intent_type: 意图类型
-
-        Returns:
-            装饰器
-
-        Example:
-            @router.register(IntentType.MEDICAL)
-            def handle_medical(query: str, context: dict) -> dict:
-                ...
-        """
-
-        def decorator(func: Callable) -> Callable:
-            self.handlers[intent_type] = func
-            self.logger.debug(f"注册处理器：{intent_type.value} -> {func.__name__}")
-            return func
-
-        return decorator
-
+    # 路由用户查询（对外接口）
     def route(
         self,
         query: str,
@@ -108,7 +110,7 @@ class IntentRouter:
         **kwargs,
     ) -> Dict[str, Any]:
         """
-        路由用户查询
+        路由用户查询（对外接口）
 
         Args:
             query: 用户输入

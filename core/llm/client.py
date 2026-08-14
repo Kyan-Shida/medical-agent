@@ -1,5 +1,7 @@
 """
+```LLMClient` 核心类
 LLM 客户端模块（原生 API 调用）
+底层出口类，原生封装 OpenAI 兼容格式的 LLM API，内置重试、降级、异常处理，提供单轮对话等基础调用方法
 """
 
 import requests

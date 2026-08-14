@@ -1,6 +1,7 @@
 """
 医疗 Agent API 服务
 基于 FastAPI 实现的 RESTful API
+接受前端发出的api请求。
 """
 
 import sys
