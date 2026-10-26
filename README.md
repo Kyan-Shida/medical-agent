@@ -553,7 +553,7 @@ python main.py --web --env .env.dev
 
 - **项目地址**: [[Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent)]
 - **问题反馈**: [[Issues · Ryan-Shida/medical-agent](https://github.com/Ryan-Shida/medical-agent/issues)]
-- **邮箱**: [2957837612@qq.com](mailto:2957837612@qq.com)
+
 
 ## 🙏 致谢
 
